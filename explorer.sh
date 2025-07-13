@@ -6,7 +6,7 @@ cp config/config_helper.exs "$RELDIR/releases/8.1.1/"
 case "$1" in
   start)
     echo "🚀 Starte BlockScout im Hintergrund…"
-    $APP start
+    $APP start &  # & sorgt für Hintergrund
     ;;
 
   stop)
@@ -20,7 +20,7 @@ case "$1" in
     MIX_ENV=prod mix ecto.drop -y
     MIX_ENV=prod mix ecto.create
     MIX_ENV=prod mix ecto.migrate
-    $APP start
+    $APP start &
     ;;
 
   *)
@@ -31,3 +31,4 @@ case "$1" in
     exit 1
     ;;
 esac
+
