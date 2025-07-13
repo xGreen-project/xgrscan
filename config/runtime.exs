@@ -1,8 +1,13 @@
 import Config
 
-[__DIR__ | ~w(config_helper.exs)]
-|> Path.join()
-|> Code.eval_file()
+config_helper_path = Path.join(__DIR__, "config_helper.exs")
+
+if File.exists?(config_helper_path) do
+  Code.eval_file(config_helper_path)
+else
+  IO.warn("⚠️  config_helper.exs wurde nicht gefunden unter #{config_helper_path}")
+end
+
 
 ######################
 ### BlockScout Web ###
@@ -1487,3 +1492,10 @@ Code.require_file("#{config_env()}.exs", "config/runtime")
 for config <- "../apps/*/config/runtime/#{config_env()}.exs" |> Path.expand(__DIR__) |> Path.wildcard() do
   Code.require_file("#{config_env()}.exs", Path.dirname(config))
 end
+database_url = System.fetch_env!("DATABASE_URL")
+
+config :explorer, Explorer.Repo,
+  url: database_url,
+  pool_size: 10,
+  show_sensitive_data_on_connection_error: true
+

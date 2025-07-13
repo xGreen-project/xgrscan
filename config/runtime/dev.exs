@@ -65,8 +65,16 @@ queue_target = ConfigHelper.parse_integer_env_var("DATABASE_QUEUE_TARGET", 50)
 config :explorer, Explorer.Repo,
   database: database,
   hostname: hostname,
-  url: System.get_env("DATABASE_URL"),
-  pool_size: pool_size,
+  username: "postgres",
+  password: "postgrespwd",
+#  url: System.get_env("DATABASE_URL"),
+  username: System.get_env("DATABASE_USERNAME") || "xgradmin",
+  password: System.get_env("DATABASE_PASSWORD") || "xgradmin",
+  database: System.get_env("DATABASE_NAME") || "xgrchain_db",
+  hostname: System.get_env("DATABASE_HOST") || "localhost",
+  port: String.to_integer(System.get_env("DATABASE_PORT") || "5432"),
+  pool_size: 10,
+#  pool_size: pool_size,
   queue_target: queue_target
 
 database_api = if System.get_env("DATABASE_READ_ONLY_API_URL"), do: nil, else: database

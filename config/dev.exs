@@ -15,3 +15,6 @@ config :logger, :account,
   level: :debug,
   path: Path.absname("logs/dev/account.log"),
   metadata_filter: [fetcher: :account]
+config :indexer,
+  coin_balance_catchup_batch_size: 20
+

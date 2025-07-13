@@ -20,3 +20,6 @@ config :logger, :account,
   path: Path.absname("logs/prod/account.log"),
   rotate: %{max_bytes: 52_428_800, keep: 19},
   metadata_filter: [fetcher: :account]
+config :indexer,
+  coin_balance_catchup_batch_size: 20
+
