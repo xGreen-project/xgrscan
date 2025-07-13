@@ -1,6 +1,7 @@
 #!/bin/bash
 
 APP="_build/prod/rel/blockscout/bin/blockscout"
+cp config/config_helper.exs "$RELDIR/releases/8.1.1/"
 
 case "$1" in
   start)
