@@ -11,6 +11,10 @@ import Config
 
 # General application configuration
 config :explorer,
+  coin: "XGR",
+  coin_name: "XGRChain",
+  coin_symbol: "XGR",
+  coin_decimals: 18
   chain_type: ConfigHelper.chain_type(),
   ecto_repos: ConfigHelper.repos(),
   token_functions_reader_max_retries: 3,
