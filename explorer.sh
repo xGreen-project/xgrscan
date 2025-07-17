@@ -2,6 +2,20 @@
 
 APP="_build/prod/rel/blockscout/bin/blockscout"
 cp config/config_helper.exs "$RELDIR/releases/8.1.1/"
+export DATABASE_URL="postgresql://xgradmin:xgradmin@localhost:5432/xgrscan"
+export ECTO_USE_SSL=false
+
+export ETHEREUM_JSONRPC_HTTP_URL="http://localhost:8545"
+export ETHEREUM_JSONRPC_WS_URL="ws://localhost:8546"
+
+export PORT=4000
+export HOST=localhost
+
+export NETWORK="XGRChain"
+export SUBNETWORK="Mainnet"
+export CHAIN_ID=1643
+
+
 
 case "$1" in
   start)

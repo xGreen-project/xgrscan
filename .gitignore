@@ -9,30 +9,33 @@
 /*.ez
 /logs
 
+# Blockchain / Chain / Node-Daten
+**/geth/
+**/chaindata/
+**/leveldb/
+**/*.ldb
+**/*.log
+**/*.pid
+**/*.ipc
+**/*.sock
+
 # mix dialyzer artifacts
 /priv/plts
 
-# Generated on crash by the VM
+# VM Crashes
 erl_crash.dump
 dump.rdb
 
-# Generated on crash by NPM
+# NPM Debug
 npm-debug.log
 
 # Static artifacts
 /apps/**/node_modules
 
-# Since we are building assets from assets/,
-# we ignore priv/static. You may want to comment
-# this depending on your deployment strategy.
+# Built assets
 /apps/*/priv/static/
 
-# Files matching config/*.secret.exs pattern contain sensitive
-# data and you should not commit them into version control.
-#
-# Alternatively, you may comment the line below and commit the
-# secrets files as long as you replace their contents by environment
-# variables.
+# Secrets & private configs
 /apps/*/config/*.secret.exs
 
 # Wallaby screenshots
@@ -41,39 +44,56 @@ screenshots/
 # Sobelow
 .sobelow
 
-# osx
+# macOS
 .DS_Store
-dump.rdb
 
-# mix phx.gen.cert self-signed certs for dev
+# Self-signed dev certs
 /apps/block_scout_web/priv/cert
 
+# Docker volumes & runtime data
 /docker-compose/services/blockscout-db-data
 /docker-compose/services/stats-db-data
 /docker-compose/services/redis-data
 /docker-compose/services/logs
 /docker-compose/tmp
+/docker-data/
+/postgres-data/
+/data/
+/volumes/
+/*.tar.gz
 
+# IDEs & Editor config
 .idea/
 *.iml
-
 .vscode
 .cursorignore
 .cursorrules
+
+# Elixir language server
 .elixir_ls
 
-**.dec**
+# Phoenix session/cookie cache
+**/*.dec
 
-*.env.example
-*.env.local
-*.env.staging
+# Env files
+*.env
+*.env.*
+!*.env.sample
 .devcontainer/.blockscout_config*
 
-# dets tables
+# DETS storage
 queue_storage
 tasks_in_progress
 /dets
 
+# Temp & misc
 /temp
+/tmp
+*.swp
+*.bak
+*.orig
+*.rej
 
-openapi.yaml
+# ExUnit temp
+test-*
+
